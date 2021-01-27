@@ -1,30 +1,52 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
+import Router from "vue-router";
 import Home from "../views/Home.vue";
+import Product from "../views/Product.vue";
+import Cart from "../views/Cart.vue";
+import NotFound from "../views/NotFound.vue";
+import About from "../views/About.vue";
 
-Vue.use(VueRouter);
 
-const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
-];
+Vue.use(Router);
 
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes
+export default new Router({
+  routes: [
+    {
+      path: "/",
+      name: "home",
+      component: Home,
+    },
+    {
+      path: "/products/:id",
+      name: "product",
+      component: Product,
+    },
+    {
+      path: "/products/",
+      name: "product-list",
+      component: () => import("../components/ProductsList"),
+    },
+    {
+      path: "/add",
+      name: "add",
+      component: () => import("../components/AddProduct"),
+    },
+    {
+      path: "/cart",
+      name: "cart",
+      component: Cart,
+    },
+    { 
+      path: '/error', 
+      component: NotFound,
+    },
+    { 
+      path: '*', 
+      component: NotFound,
+    },
+    { 
+      path: '/about', 
+      component: About,
+    }
+  ],
 });
-
-export default router;
