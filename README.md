@@ -7,6 +7,7 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
+>**Important** : run node server.js first.
 npm run serve
 ```
 
